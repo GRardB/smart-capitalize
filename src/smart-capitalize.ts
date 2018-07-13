@@ -1,7 +1,7 @@
 export const capitalize = (s: string) => {
-  if (hasCapitalLetters(s)) return s
+  if (hasUpperCaseLetters(s)) return s
 
-  const firstIndex = s.search(/\w/)
+  const firstIndex = getFirstLowerCaseIndex(s)
 
   if (firstIndex < 0) return s
 
@@ -12,16 +12,31 @@ export const capitalize = (s: string) => {
   ].join('')
 }
 
-const hasCapitalLetters = (s: string) => {
+// I would love to use a regexp for this, but unfortunately, JS
+// does not yet support Unicode property escapes
+// https://github.com/tc39/proposal-regexp-unicode-property-escapes
+const hasUpperCaseLetters = (s: string) => {
   for (var i = 0; i < s.length; i++) {
-    const lowercase = s[i].toLocaleLowerCase()
-    const uppercase = s[i].toLocaleUpperCase()
-    // It's not enough to test if a letter is uppercase or lowercase.
-    // We also need to make sure that the character has two cases
-    if (s[i] !== lowercase && s[i] === uppercase) {
-      return true
-    }
+    if (isUpperCase(s[i])) return true
   }
 
   return false
+}
+
+const getFirstLowerCaseIndex = (s: string) => {
+  for (var i = 0; i < s.length; i++) {
+    if (isLowerCase(s[i])) return i
+  }
+
+  return -1
+}
+
+const isUpperCase = (s: string) => {
+  // It's not enough to test if a letter is uppercase or lowercase.
+  // We also need to make sure that the character has two cases
+  return s !== s.toLocaleLowerCase() && s === s.toLocaleUpperCase()
+}
+
+const isLowerCase = (s: string) => {
+  return s === s.toLocaleLowerCase() && s !== s.toLocaleUpperCase()
 }
