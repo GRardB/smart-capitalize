@@ -11,11 +11,15 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "rollup -c",
-    "watch": "rollup -cw"
+    "watch": "rollup -cw",
+    "test": "jest"
   },
   "devDependencies": {
+    "@types/jest": "^23.1.5",
+    "jest": "^23.4.0",
     "rollup": "^0.62.0",
     "rollup-plugin-typescript2": "^0.15.1",
+    "ts-jest": "^23.0.0",
     "typescript": "^2.9.2"
   }
 }
