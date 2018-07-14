@@ -17,9 +17,9 @@ It's a simple library with two functions:
 * `capitalize()`
 * `capitalizeAll()`
 
-`capitalize` is meant to be used for only a single word, while `capitalizeAll` is mean to be used for multiple.
+`capitalize` is meant to be used for only a single word, while `capitalizeAll` is for use with multiple words, such as with a name or a sentence/title.
 
-The internal logic isn't _super_ simple, but in practice, these functions will capitalize strings where there doesn't already exist a capitalized letter. Some examples:
+The internal logic isn't _super_ simple, but in practice, these functions will capitalize strings where there doesn't already exist an uppercase letter. Some examples:
 
 ```
 capitalize('hello') === 'Hello' // capitalized
@@ -42,7 +42,7 @@ yarn add smart-capitalize
 Using `npm`:
 
 ```
-npm -i -S smart-capitalize
+npm i -S smart-capitalize
 ```
 
 ## Usage
