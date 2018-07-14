@@ -2,13 +2,18 @@
   "name": "smart-capitalize",
   "version": "0.0.1",
   "author": "Gerard O'Neill <grardb@gmail.com>",
+  "description": "A simple library to capitalize only words/strings without existing capital letters",
+  "keywords": [
+    "string",
+    "capitalize"
+  ],
   "license": "MIT",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
   "files": [
     "dist"
   ],
-  "types": "dist/index.d.ts",
+  "types": "dist/smart-capitalize.d.ts",
   "scripts": {
     "build": "rollup -c",
     "watch": "rollup -cw",
