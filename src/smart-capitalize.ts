@@ -12,8 +12,34 @@ export const capitalize = (s: string) => {
   ].join('')
 }
 
-// I would love to use a regexp for this, but unfortunately, JS
-// does not yet support Unicode property escapes
+export const capitalizeAll = (s: string) => {
+  if (hasUpperCaseLetters(s)) return s
+
+  let end
+
+  let capitalized = ''
+  let remaining = s
+
+  while (remaining.length > 0) {
+    end = getFirstNonAlphanumericSymbolIndex(remaining)
+
+    if (end < 0) {
+      capitalized += capitalize(remaining)
+      remaining = ''
+    } else if (end === 0) {
+      capitalized += remaining[0]
+      remaining = remaining.substring(1)
+    } else {
+      capitalized += capitalize(remaining.substring(0, end))
+      remaining = remaining.substring(end)
+    }
+  }
+
+  return capitalized
+}
+
+// I would love to use regular expressions for all of the following code,
+// but unfortunately, JS does not yet support Unicode property escapes
 // https://github.com/tc39/proposal-regexp-unicode-property-escapes
 const hasUpperCaseLetters = (s: string) => {
   for (var i = 0; i < s.length; i++) {
@@ -39,4 +65,17 @@ const isUpperCase = (s: string) => {
 
 const isLowerCase = (s: string) => {
   return s === s.toLocaleLowerCase() && s !== s.toLocaleUpperCase()
+}
+
+const getFirstNonAlphanumericSymbolIndex = (s: string) => {
+  for (var i = 0; i < s.length; i++) {
+    // We consider anything a non-alphanumeric symbol if it can't be capitalized
+    // and if it's not a number. This will consider letters/words in certain languages
+    // to be symbols, but presumably, most people won't be mixing languages like你this
+    if (!isLowerCase(s[i]) && !isUpperCase(s[i]) && isNaN(parseInt(s[i], 10))) {
+      return i
+    }
+  }
+
+  return -1
 }
