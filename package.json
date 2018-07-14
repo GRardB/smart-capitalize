@@ -1,6 +1,6 @@
 {
   "name": "smart-capitalize",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "author": "Gerard O'Neill <grardb@gmail.com>",
   "description": "A simple library to capitalize only words/strings without existing capital letters",
   "keywords": [
