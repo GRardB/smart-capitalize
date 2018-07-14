@@ -7,6 +7,10 @@
     "string",
     "capitalize"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/GRardB/smart-capitalize"
+  },
   "license": "MIT",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
